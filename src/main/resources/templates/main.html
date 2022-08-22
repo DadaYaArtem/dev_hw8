@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<form action="/user" method="get">
+    <label for="tables">Choose a table:</label>
+    <select name="tables" id="tables">
+        <option value="users">Users</option>
+        <option value="products">Products</option>
+        <option value="manufacturers">Manufacturers</option>
+    </select><br>
+    <button type="submit">Confirm</button>
+</form>
+
+<!--<div class="container-fluid text-center">-->
+<!--	<h1>Users Page</h1>-->
+<!--<a class="h2" th:href="@{/users}">Users</a></h2>-->
+<!--</div>-->
+<!--<div class="container-fluid text-center">-->
+<!--	<h1>Products Page</h1>-->
+<!--	<a class="h2" th:href="@{/products}">Products</a></h2>-->
+<!--</div>-->
+<!--<div class="container-fluid text-center">-->
+<!--	<h1>Manufacturers Page</h1>-->
+<!--	<a class="h2" th:href="@{/manufacturers}">Manufacturers</a></h2>-->
+<!--</div>-->
+<!--<form th:action="@{/logout}" method="post">-->
+<!--	<input type="submit" value="Logout" />-->
+<!--</form>-->
+</body>
+</html>
