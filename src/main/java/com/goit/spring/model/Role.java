@@ -1,36 +1,30 @@
 package com.goit.spring.model;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "roles")
-public class Role implements GrantedAuthority {
+@Builder
+public class Role {
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users = new ArrayList<>();
 
     @Override
-    public String getAuthority() {
-        return getName();
+    public String toString() {
+        return name;
     }
 }
+

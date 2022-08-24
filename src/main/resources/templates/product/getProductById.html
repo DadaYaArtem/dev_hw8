@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>Title</title>
 </head>
 <body>
-
 <style>
     .inline {
     font-size: larger;
@@ -21,22 +20,12 @@
 	text-align:center;
     display: inline-block;
     }
-
 </style>
 
-<h1 class="inline">Choose a table</h1><br>
 
-<div class="inline">
-    <a class="h2" th:href="@{/user}">Users</a></h2>
-</div>
-
-<div class="inline">
-    <a class="h2" th:href="@{/product}">Products</a></h2>
-</div>
-
-<div class="inline">
-    <a class="h2" th:href="@{/manufacturer}">Manufacturers</a></h2>
-</div>
+  <h1 th:text="' Here is information about product with id: ' + ${product.id}" class="inline"></h1><br>
+  <h2 th:text="'Name ' + ${product.name}" class="inline"></h2>
+  <h2 th:text="'Price ' + ${product.price}" class="inline"></h2>
 
 </body>
 </html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New User</title>
+</head>
+<body>
+
+
+<form th:action="@{/manufacturer/save}" method="post" th:object="${manufacturer}">
+    <input type="hidden" th:field="*{id}">
+
+    <label>Name</label><br>
+    <input type="text" th:field="*{name}" required minlength="3" maxlength="20"/><br>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>

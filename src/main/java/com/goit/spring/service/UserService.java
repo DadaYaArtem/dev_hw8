@@ -12,7 +12,8 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    @Autowired private UserRepository repo;
+    @Autowired
+    private UserRepository repo;
 
     public List<User> listAll(){
         return (List<User>) repo.findAll();
@@ -30,7 +31,19 @@ public class UserService {
         throw new Exception("User not found!");
     }
 
+    public User getByEmail (String email) throws Exception {
+        User result = repo.findByEmail(email);
+        if(result != null){
+            return result;
+        }
+        throw new Exception("User not found!");
+    }
+
     public void delete(Long id){
         repo.deleteById(id);
+    }
+
+    public String getRoleByEmail(String email){
+        return repo.getRoleByEmail(email);
     }
 }

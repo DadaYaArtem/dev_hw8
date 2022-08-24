@@ -1,26 +1,26 @@
 INSERT INTO manufacturers (name) VALUES
-('CleverMind'),
-('ILovePDF'),
-('Biomedical something');
+('GoodLogic'),
+('DontCare'),
+('Papich');
 
 
 INSERT INTO products (name, price) VALUES
-('All4U', 777),
-('IT-Pedia', 797),
-('WorkBook', 99),
-('Musical Album', 121),
-('K.M.D.', 1943),
-('Candle In The Wind', 2020);
+('Jolybells', 777),
+('Moisha', 797),
+('SomeProduct', 99),
+('Starry night', 121),
+('The scream', 1943),
+('Karmagedon', 2020);
 
 INSERT INTO roles (name) VALUES
 ('Admin'),
 ('User');
 
 INSERT INTO users (email, firstname, lastname, password) VALUES
-('popusk@gmail.com', 'Bohdan', 'Holovchenko', 123);
+('admin@gmail.com', 'AdnimFname', 'AdminLname', '$2a$12$L6shB9R49VnoKCLUcKFCbO0oJGzikQYXlZQUk3Qm/ePEWyvFrdkmC');
 
 INSERT INTO users (email, firstname, lastname, password) VALUES
-('somebody@ukr.net', 'Mykola', 'Molodets', 123);
+('user@ukr.net', 'UserFname', 'UserLname', '$2a$12$L6shB9R49VnoKCLUcKFCbO0oJGzikQYXlZQUk3Qm/ePEWyvFrdkmC');
 
 INSERT INTO users_roles (user_id, role_id) VALUES
 (1, 1), (2, 2);

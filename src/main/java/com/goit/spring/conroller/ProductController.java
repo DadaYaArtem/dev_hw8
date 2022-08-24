@@ -2,55 +2,77 @@ package com.goit.spring.conroller;
 
 import com.goit.spring.model.Product;
 import com.goit.spring.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
 @Controller
 public class ProductController {
+    @Autowired
+    private ProductService service;
 
-    @Autowired private ProductService service;
 
-    @GetMapping("/products")
-    public String showProductList(Model model){
+    @GetMapping("/product")
+    public String productMainPage(Model model) {
+        return "product/product_main";
+    }
+
+    @GetMapping("/product/list")
+    public String showProductList(Model model) {
         List<Product> listProducts = service.listAll();
         model.addAttribute("listProducts", listProducts);
-        return "products";
+        model.addAttribute("listSize", listProducts.size());
+        return "product/getAllProducts";
     }
 
-    @GetMapping("/products/new")
-    public String showNewForm(Model model){
-        model.addAttribute("product", new Product());
-        return "product_form";
-    }
-
-    @PostMapping("/products/save")
-    public String saveProduct(Product product){
-        service.save(product);
-        return "redirect:/products";
-    }
-
-    @GetMapping("/products/edit/{id}")
-    public String showEditForm(@PathVariable("id") Long id, Model model){
+    @GetMapping("/product/product_info")
+    public String showUserById(Model model, HttpServletRequest req) {
         try {
-            Product product = service.get(id);
-            model.addAttribute("product", product);
-            return "product_form";
+            model.addAttribute("product", service.get(Long.valueOf(req.getParameter("productId"))));
+            return "product/getProductById";
         } catch (Exception e) {
-            e.printStackTrace();
-            return "redirect:/products";
+            return "redirect:/product/list";
         }
     }
 
-    @GetMapping("/products/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Long id){
+    @PostMapping("/product/new")
+    public String showNewForm(Model model) {
+        model.addAttribute("product", new Product());
+        return "product/product_form";
+    }
+
+    @PostMapping("/product/save")
+    public String saveProduct(Product product, HttpServletResponse res) {
+        service.save(product);
+        return "redirect:/product/list";
+
+    }
+
+    @PostMapping("/product/edit")
+    public String showEditForm(ModelMap model, HttpServletRequest req) {
+        try {
+            Long id = Long.valueOf(req.getParameter("productId"));
+            Product product = service.get(id);
+            model.addAttribute("product", product);
+            return "product/product_form";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/product/list";
+        }
+    }
+
+    @PostMapping("/product/delete")
+    public String deleteProduct(HttpServletRequest req) {
+        Long id = Long.valueOf(req.getParameter("productId"));
         service.delete(id);
-        return "redirect:/products";
+        return "redirect:/product/list";
     }
 
 }

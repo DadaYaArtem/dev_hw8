@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>Manage users</title>
 </head>
 <body>
 
@@ -21,22 +21,17 @@
 	text-align:center;
     display: inline-block;
     }
-
 </style>
 
-<h1 class="inline">Choose a table</h1><br>
+    <h1 th:text="'Manufacturers: ' + ${listSize}" class='inline'></h1>
 
-<div class="inline">
-    <a class="h2" th:href="@{/user}">Users</a></h2>
-</div>
+    <div th:each="l: ${listManufacturers}">
+        <div th:text="'Id: ' + ${l.id}" class='inline'></div>
+        <div th:text="'Name: ' + ${l.name}" class='inline'></div>
 
-<div class="inline">
-    <a class="h2" th:href="@{/product}">Products</a></h2>
-</div>
+    </div>
 
-<div class="inline">
-    <a class="h2" th:href="@{/manufacturer}">Manufacturers</a></h2>
-</div>
+
 
 </body>
 </html>
