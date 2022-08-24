@@ -1,5 +1,0 @@
-    <h3><a th:href="/@{/user/list}">List of Users</a></h3>
-
-        <div th:if="${#strings.equals(activeUser.getRoles().get(0), 'Admin')}"
-             th:href="@{'/manufacturers/delete/' + ${manufacturer.id}}">Delete
-        </div>
